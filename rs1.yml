@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: myweb-rs
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+       env: production
+#    matchExpressions:
+#      - { key: env,  operator: In,  values: [ production ] }
+  template:
+    metadata:
+     name: myweb-pod
+     labels:
+       env: production
+    spec:
+      containers:
+      - name: myweb-con
+        image: vimal13/apache-webserver-php
